@@ -1,0 +1,17 @@
+# Dependências
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Variáveis de ambiente
+.env
+
+# Build
+dist/
+build/
+
+# Cache
+.cache/
