@@ -1,4 +1,5 @@
 import express from "express";
+import { error } from "node:console";
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +18,23 @@ app.get("/tarefas", (req, res) => {
 });
 
 
+
+// Busca uma tarefa por ID
+app.get("/tarefas/:id", (req, res) => {
+  const id = Number(req.params.id); // o valor que vai na URL
+
+  const tarefa = tarefas.find((t) => t.id === id); // nova tarefa achada
+
+  if (!tarefa) {
+    return res.status(404).json({ // se nao achar manda 404
+        error: "Tarefa não encontrada"
+    });
+  }
+
+  res.json(tarefa);
+});
+
+
 // CRIA a tarefa
 app.post("/tarefas", (req, res) => {
     const { titulo } = req.body; // pega o titulo
@@ -32,6 +50,15 @@ app.post("/tarefas", (req, res) => {
     res.status(201).json(novaTarefa);
 })
 
+
+// UPDATE
+app.put("/tarefas/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    const tarefa = tarefas.find((t) => t.id === id);
+
+    
+})
 
 
 app.listen(PORT, () => {
