@@ -57,6 +57,18 @@ app.put("/tarefas/:id", (req, res) => {
 
     const tarefa = tarefas.find((t) => t.id === id);
 
+    if(!tarefa) {
+        return res.status(404).json({
+            erro: "Tarefa não encontrada"
+        });
+    }
+    
+    const { titulo, concluida } = req.body;
+    if (titulo !== undefined) tarefa.titulo = titulo;
+    if (concluida !== undefined) tarefa.concluida = concluida;
+
+    res.json(tarefa)
+
     
 })
 
