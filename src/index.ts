@@ -85,7 +85,7 @@ app.delete("/tarefas/:id", (req, res) => {
 
     tarefas.splice(index, 1); // remove 1 item naquela posição
 
-    res.status(204).send(); // 204 = sucesso, sem conteúdo pra devolver 
+    res.status(204).send(); // 204 = sucesso, sem conteúdo pra devolver ...
 });
 
 
