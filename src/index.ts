@@ -73,6 +73,22 @@ app.put("/tarefas/:id", (req, res) => {
 })
 
 
+// DELETE
+app.delete("/tarefas/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    const index = tarefas.findIndex((t) => t.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({ erro: "Tarefa não encontrada "});
+    }
+
+    tarefas.splice(index, 1); // remove 1 item naquela posição
+
+    res.status(204).send(); // 204 = sucesso, sem conteúdo pra devolver 
+});
+
+
 app.listen(PORT, () => {
     console.log("Servidor ON");
 })
